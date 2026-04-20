@@ -22,6 +22,17 @@ python segmentation.py
 
 Both scripts expect `census-bureau.data` and `census-bureau.columns` to be in the same directory.
 
+## Docker
+
+Build and run both scripts in one command:
+
+```bash
+docker build -t census-ml .
+docker run -v $(pwd)/images:/app/images census-ml
+```
+
+All output plots will be saved to the local `images/` directory.
+
 ## Outputs
 
 `pipeline.py` produces:

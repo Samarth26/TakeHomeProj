@@ -8,6 +8,9 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from openTSNE import TSNE
 
+import os; os.makedirs("images", exist_ok=True)
+np.random.seed(42)
+
 # ── 1. Load ────────────────────────────────────────────────────────────────────
 with open("census-bureau.columns", "r", encoding="utf-8") as f:
     cols = [line.strip() for line in f if line.strip()]
@@ -16,7 +19,7 @@ df = pd.read_csv("census-bureau.data", header=None, names=cols, sep=",", skipini
 print(f"Loaded: {df.shape}")
 
 # ── 2. Feature selection ───────────────────────────────────────────────────────
-numerical_cols = ["age", "capital gains", "capital losses", "dividends from stocks", "weeks worked in year"]
+numerical_cols = ["age", "capital gains", "capital losses", "dividends from stocks", "weeks worked in year", "wage per hour"]
 
 categorical_cols = [
     "major occupation code", "major industry code", "education",
@@ -51,7 +54,7 @@ plt.ylabel("Cumulative Explained Variance")
 plt.title("PCA Explained Variance")
 plt.legend()
 plt.tight_layout()
-plt.savefig("pca_explained_variance.png", dpi=150)
+plt.savefig("images/pca_explained_variance.png", dpi=150)
 
 for threshold in [0.80, 0.90, 0.95]:
     n = np.argmax(cumvar >= threshold) + 1
@@ -66,7 +69,7 @@ plt.figure(figsize=(10, 6))
 sns.scatterplot(x="PCA1", y="PCA2", data=df_pca_2d, alpha=0.3, s=5)
 plt.title("PCA of Census Data (2D)")
 plt.tight_layout()
-plt.savefig("pca_2d.png", dpi=150)
+plt.savefig("images/pca_2d.png", dpi=150)
 
 # ── 7. t-SNE – visualization only ─────────────────────────────────────────────
 print("Running t-SNE…")
@@ -78,7 +81,7 @@ plt.figure(figsize=(10, 6))
 sns.scatterplot(x="tSNE1", y="tSNE2", data=df_tsne, alpha=0.3, s=5)
 plt.title("t-SNE of Census Data")
 plt.tight_layout()
-plt.savefig("tsne_raw.png", dpi=150)
+plt.savefig("images/tsne_raw.png", dpi=150)
 
 # ── 8. PCA to 28 components (90% variance) for clustering ─────────────────────
 N_COMPONENTS = 28  # chosen from explained variance plot
@@ -103,7 +106,7 @@ ax1.set_xlabel("K"); ax1.set_ylabel("Inertia"); ax1.set_title("Elbow Plot")
 ax2.plot(K_range, silhouettes, "ro-")
 ax2.set_xlabel("K"); ax2.set_ylabel("Silhouette Score"); ax2.set_title("Silhouette Score")
 plt.tight_layout()
-plt.savefig("kmeans_elbow_silhouette.png", dpi=150)
+plt.savefig("images/kmeans_elbow_silhouette.png", dpi=150)
 
 print("\nSilhouette scores:")
 for k, s in zip(K_range, silhouettes):
@@ -119,7 +122,7 @@ plt.figure(figsize=(10, 6))
 sns.scatterplot(x="tSNE1", y="tSNE2", data=df_tsne, hue=clusters, palette="Set2", legend="full", alpha=0.4, s=5)
 plt.title(f"t-SNE with KMeans Clusters (K={K})")
 plt.tight_layout()
-plt.savefig("tsne_clusters.png", dpi=150)
+plt.savefig("images/tsne_clusters.png", dpi=150)
 
 # ── 11. Cluster profiling ──────────────────────────────────────────────────────
 df_profile = df[numerical_cols + categorical_cols].copy()
@@ -149,7 +152,7 @@ sns.heatmap(cluster_num_norm.T, annot=cluster_num.T.round(1), fmt="g",
 plt.title("Cluster Profiles — Numerical Features (color=normalized, label=raw mean)")
 plt.xlabel("Cluster")
 plt.tight_layout()
-plt.savefig("cluster_profile_numerical.png", dpi=150)
+plt.savefig("images/cluster_profile_numerical.png", dpi=150)
 
 cat_pct = {}
 for col in categorical_cols:
@@ -167,4 +170,4 @@ sns.heatmap(cat_pct_df, annot=True, fmt=".0f", cmap="YlOrRd",
 plt.title("Cluster Profiles — Categorical Features\n(% of cluster with most common overall value)")
 plt.xlabel("Cluster")
 plt.tight_layout()
-plt.savefig("cluster_profile_categorical.png", dpi=150)
+plt.savefig("images/cluster_profile_categorical.png", dpi=150)

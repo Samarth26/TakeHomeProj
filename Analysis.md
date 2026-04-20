@@ -17,7 +17,7 @@
 
 - Labels: - 50000. and 50000+, referred in the document as -50K and 50K+ and 0 and 1 respectively.
 
-- One of the first things to notice is the heavy class imbalance in the target variable, with a ratio of 1:15 between -50K:50K+.
+- One of the first things to notice is the heavy class imbalance in the target variable, with a ratio of 15:1 between -50K:50K+.
 
 - Another crucial observation is that the data is well populated with very few missing values, and '?' which probably represents an answer that was not able to be deciphered during data collection. We denote these as missing values. 
 
@@ -26,9 +26,7 @@
 - The columns with a large number of Not in universe values which still provide information for prediction are:
     - 'major industry code'
     - 'major occupation code'
-    - 'class of worker'
-
-- Columns with a large number of Not in universe were also columns that did not have a lot of importance in the model. However, the large existence of Not in universe values is not the reason for the low importance of these features. 
+    -  We look into this deeply in the following sections. 
 
 ## Data Cleaning and Preprocessing
 - The labels - 50000. and 50000+. were converted to 0 and 1 respectively for easier modeling.
@@ -48,13 +46,14 @@
         - The issue with the former is largely because capital gains itself is a very strong and a rather sparse indicator. Including it in the total income feature did not provide much of a boost to the model performance and it also made the feature less interpretable.
 
 - Distribution of numerical features:
-<img src="images/image-1.png" width="70%"/>
+
+<img src="images/numerical_distributions.png" width="70%"/>
 
 ## Categorical Features
 - Categorical features are the rest of the 35 features in the dataset.
 - Majority of these features are nominal categorical features. 
 - This makes the 'decision' to use a 'decision tree-based' model easier because of the models ability to split on criterion. This allows for us to also have a non-linear decision boundary which is important given the complexity of the problem.
-- There are features with cardinality of 2 for Sex, year to 53 for weeks worked in year.
+- There are features with cardinality of 2 for Sex, year and as high as 52 for detailed industry recode and 47 for detailed occupation recode.
 - Largely the data distribution of the categorical features is skewed with a majority of the data points belonging to a few categories. When the priority is interpretability, we can consider grouping the categories with low frequency into an 'other' category. 
     - An example of this is are categories such as country of birth, hispanic origin, country of birth father, country of birth mother which have a large number of categories with a long tail distribution. 
     - These high-dimensional categorical features add to the reason to swing towards a decision tree-based model as opposed to a linear model which would require one-hot encoding and would not be able to capture the relationships between the categories as effectively.
@@ -68,11 +67,16 @@
 - It works by creating estimators sequentially, where each new estimator focuses on correcting the errors made by the previous ones. The final prediction is a weighted sum of the predictions from all the estimators. 
 - The hyperparameters we tuned were:
     - max_depth: The maximum depth of the trees. A deeper tree can capture more complex patterns but can also lead to overfitting.
-        - Range 
+        - Range: 6 to 10
     - max_leaves: The maximum number of leaves in a tree. This can help control the complexity of the model and prevent overfitting.
+        - Range: 20 to 40
     - n_estimators: The number of trees in the ensemble. More trees can improve performance but also increase training time.
+        - Range: 100 to 500
 - We focus on these hyperparameters due to their impact on performance and their ability to control overfitting.
-- For the training process, we used 3-fold cross-validation to evaluate the performance of the model on the training data and to prevent overfitting. We also used sample weights to account for the class imbalance in the dataset.
+- For hyperparameter tuning we used 3-fold cross-validation and for final model eval we use 5-fold for the final model evaluation. The cross validation is to better approximate the model's performance on unseen data, i.e. generalizability. 
+
+- 3-fold for tuning reduces compute cost across 30 Optuna trials, while 5-fold for the final model gives a more reliable performance estimate when compute is less of a concern.
+
 - The loss function used is the binary logistic loss function
     - $ L(y, \hat{y}) = -\frac{1}{N} \sum_{i=1}^{N} [y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i)] $
     - Where $y_i$ is the true label and $\hat{y}_i$ is the predicted probability for the positive class.
@@ -116,14 +120,24 @@
 
 - We follow this methodology of looking at feature importance, understanding the features and their relationships with each other and the target variable, and then selecting features based on that understanding to build a more interpretable model while preserving performance.
 
-- We select all the features except the lowest 10 features, i.e. until Major industry code since those are proven to be colinear and all the features after those thereby are either colinear themselves or have very low importance. 
+- We select all the features except the lowest 10 important features as seen in the feature importance of the baseline model plot, i.e. until Major industry code since those are proven to be colinear and all the features that scored less are thereby are either colinear themselves or add more noise than signal. 
 
+- We pick the best hyperparameters found from the optuna tuning, which are the parameters through an weighted combination of the test F1 score and the gap between the train and test F1 scores, to also priortise a model that generalizes well and does not overfit the data. 
+
+- $$\text{score} = \text{test F1} + \lambda \cdot \text{gap}, \lambda=0.5$$
+. We then run a final evaluation of the model with the selected features and the best hyperparameters using 5-fold cross-validation to get a more robust estimate of the model's performance.
+
+- Here is the final performance of the baseline and the feature-selected models, given the best found hyperparameters:
+    - max_depth: 10
+    - max_leaves: 28
+    - n_estimators: 200
 
                         ── Model Comparison ──
                   model  n_features  train_f1  test_f1    gap
-      Baseline (all features)    40    0.8956   0.7621 0.1335
-      Selected features          30    0.8811   0.7590 0.1221
+      Selected features          25    0.7982   0.7360 0.0621
+Baseline (all features)          40    0.7832   0.7319 0.0513
 
+> Our model with selected features performs similar to the baseline model while using 15 fewer features, making it more interpretable and less complex. We promote using the feature selected model for better generalizability and interpretability while preserving performance.
 
 ## Model Usage Recommendation 
 - Any data collected in the future should be preprocessed in the same way as the training data, including handling missing values, creating the total income feature, and ensuring consistency in the labels of the categorical features.
@@ -166,7 +180,7 @@
 - Elbow plot uses within cluster sum of squares of the distances of a point to its cluster centeroid to tell us the tightness of the cluster and the silhouette plot tells us how well separated the clusters while also incorporating tightness.
 <img src="images/kmeans_elbow_silhouette_nb.png" width="70%"/>
 
-- We want to minimize the within cluster sum of squares (represented by the elbow plot) and maximize the silhouette score, leading us to choose K-means with 6 clusters.
+- We want to minimize the within cluster sum of squares (represented by the elbow plot) and maximize the silhouette score, leading us to choose K-means with 4 clusters.
 - Once we plot the clusters, we can then look at the distribution of the features in each cluster to be able to provide insights on the characteristics of each cluster and how they differ from each other.
 
 <img src="images/tsne_clusters.png" width="70%"/>
@@ -176,14 +190,15 @@
 <img src="images/cluster_profile_categorical.png" width="70%"/>
 
 - The clusters can be nicely defined as follows:
-    - Cluster 1 and 0: Younger and Older individuals respectively with small capital gains and losses. Larger dividends from stocks for the older generation and non-existent for the younger generation, and basically little to no wage per hour. They are likely to be students and retirees. There are other obvious differences in the distribution of the categorical features such as education, marital status, etc. Which adds to the well defined nature of these clusters.
-    - Cluster 2 to 5: These Clusters are middle aged individuals. Grouped based on different similarities. 
-        - Cluster 2 and 5: These are working individuals whose primary source of income is wage per hour. They have small to medium capital gains and losses and dividends from stocks. Two bigger differences between the two is their age with the latter being older and also more likely to be a householder.
-        - Cluster 3 and 4: Both of similar age but the former has a much higher capital gains and dividends from stocks while the latter has a much higher wage per hour a good amount of dividends from stocks but also much higher capital losses. They both have large appetites for risk. 
+    - **Cluster 0 — High-Earning Working Professionals** (~39yo): High wage per hour ($115), high capital gains ($843), and works nearly full-year (~47 weeks) and virtually all are actively employed. This is the most financially active cluster.
+    - **Cluster 1 — Children** (~9yo): Near-zero values across all financial features and 90% fall under "Children or Armed Forces" for employment status. This cluster is entirely non-participants in the labour market.
+    - **Cluster 2 — Active Investors** (~44yo): Defined by very high capital losses ($1,943) and high dividends from stocks ($727), with moderate wage and weeks worked. This cluster represents middle-aged individuals with significant market exposure and the financial complexity that comes with it.
+    - **Cluster 3 — Retirees** (~60yo): Near-zero wage ($0.6) and weeks worked (1.7) but substantial dividends from stocks ($496). These individuals are no longer working and are living primarily on investment and passive income.
 
-- We can attach back our target variable to the clusters. It then becomes obvious that cluster 3 is the cluster with the highest percentage of 50K+ and individuals in the cluster 0 and 1 are the least likely to be 50K+. What is less obvious is why our cluster 2 and 5 have quite a low percentage of 50K+ individuals despite being working individuals. This exercise also does show us why Capital Gains was such an important feature for predicting 50K+. 
+- Attaching back the income label, Cluster 2 has by far the highest proportion of 50K+ individuals, consistent with their high wages and capital gains. Cluster 1 (children) and Cluster 3 (retirees with low wages) are the least likely to be 50K+. Cluster 2 is also interesting since the dominant signal is capital *losses*, which may reflect active traders who are not necessarily high net earners. Lastly, these insights heavily suggest using capital gains or losses as a strong signal for income prediction. 
 
-
+## Reproducibility
+- To ensure reproducibility of the results, we set a random seed at the beginning of our scripts. Additionally seed is set for the Optuna sampler to ensure that the hyperparameter tuning process is also reproducible. Script was also run multiple times to ensure that the results are consistent across runs.
 
 References:
 - https://xgboost.readthedocs.io/en/stable/parameter.html#cat-param
