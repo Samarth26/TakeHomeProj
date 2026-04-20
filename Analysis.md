@@ -108,11 +108,10 @@
 > Note how Major Occupation and Major Industry code have a significant increase in importance after dropping the detailed occupation and industry recode features. This shows the colinearity between these features and how they are providing similar information to the model.
 
 - We then can remove such columns with high colinearity and low importance and retrain the model to reduce the complexity of the model and to make it more interpretable while preserving model performance. 
-- We follow this methodology of looking at feature importance, understanding the features and their relationships with each other and the target variable, and then selecting features based on that understanding to build a more interpretable model while preserving performance.
-- We select all the features except the lowest 9 important features as seen in the feature importance of the baseline model plot, i.e. until Major industry code since those are proven to be colinear and all the features that scored less are thereby are either colinear themselves or add more noise than signal. 
-- We pick the best hyperparameters found from the optuna tuning, which are the parameters through an weighted combination of the test F1 score and the gap between the train and test F1 scores, to also priortise a model that generalizes well and does not overfit the data. 
+- Following the above methodology, we select all the features except the lowest 9 important features as seen in the feature importance of the baseline model plot, i.e. until Major industry code since those are proven to be colinear and all the features that scored less are thereby are either colinear themselves or add more noise than signal. 
+- We pick the best hyperparameters found from the optuna tuning, which are the parameters we gather through an evaluation of a weighted combination of the test F1 score and the gap between the train and test Macro F1 scores instead of just the best test Macro F1 score, this helps priortise a model that generalizes well and does not overfit the data. 
 - $$\text{score} = \text{test F1} + \lambda \cdot \text{gap}, \lambda=0.5$$
-. We then run a final evaluation of the model with the selected features and the best hyperparameters using 5-fold cross-validation to get a more robust estimate of the model's performance.
+- We then run a final evaluation of the model with the selected features and the best hyperparameters using 5-fold cross-validation to get a more robust estimate of the model's performance.
 - Here is the final performance of the baseline and the feature-selected models, given the best found hyperparameters:
         
                     ── Model Comparison Hyperparameters ──
@@ -126,7 +125,7 @@
       Selected features          31    0.7959   0.7352 0.0607
       Baseline (all features)    40    0.7926   0.7349 0.0577
 
-> Our model with selected features performs similar to the baseline model while using 15 fewer features, making it more interpretable and less complex. We promote using the feature selected model for better generalizability and interpretability while preserving performance.
+> Our model with selected features performs similar to the baseline model while using 9 fewer features, making it more interpretable and less complex. We promote using the feature selected model for better generalizability and interpretability while preserving performance.
 
 ## Model Usage Recommendation 
 - Any data collected in the future should be preprocessed in the same way as the training data, including handling missing values, creating the total income feature, and ensuring consistency in the labels of the categorical features.
