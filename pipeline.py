@@ -8,8 +8,14 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
-import os; os.makedirs("images", exist_ok=True)
+import os, sys
+os.makedirs("images", exist_ok=True)
+os.makedirs("outs", exist_ok=True)
 np.random.seed(42)
+
+_log = open("outs/pipeline.log", "w", buffering=1)
+sys.stdout = _log
+sys.stderr = _log
 
 
 # ── 1. Load ────────────────────────────────────────────────────────────────────

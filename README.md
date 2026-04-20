@@ -28,7 +28,7 @@ Build and run both scripts in one command:
 
 ```bash
 docker build -t census-ml .
-docker run -v $(pwd)/images:/app/images census-ml
+docker run -v $(pwd)/images:/app/images -v $(pwd)/outs:/app/outs census-ml
 ```
 
 All output plots will be saved to the local `images/` directory.
@@ -36,7 +36,7 @@ All output plots will be saved to the local `images/` directory.
 ## Outputs
 
 `pipeline.py` produces:
-- `total_income_by_label.png` — income distribution by label
+- `numerical_distributions.png` — numeical variables distribution by label
 - `feature_importance_baseline.png` — baseline model feature importance
 - `feature_importance_selected.png` — selected-feature model feature importance
 - `feature_importance_colinearity_check.png` — collinearity check feature importance

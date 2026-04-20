@@ -8,8 +8,14 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from openTSNE import TSNE
 
-import os; os.makedirs("images", exist_ok=True)
+import os, sys
+os.makedirs("images", exist_ok=True)
+os.makedirs("outs", exist_ok=True)
 np.random.seed(42)
+
+_log = open("outs/segmentation.log", "w", buffering=1)
+sys.stdout = _log
+sys.stderr = _log
 
 # ── 1. Load ────────────────────────────────────────────────────────────────────
 with open("census-bureau.columns", "r", encoding="utf-8") as f:
