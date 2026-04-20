@@ -15,9 +15,11 @@
     - Major Industry code, detailed industry recode: Categorical features representing the industry in which the individual works.
     - Detailed occupation recode: A categorical feature representing the occupation of the individual.
 
-- One of the first things to notice is the heavy class imbalance in the target variable, with a ration of 1:15 between -50K:50K+.
+- Labels: - 50000. and 50000+, referred in the document as -50K and 50K+ and 0 and 1 respectively.
 
-- Another crucial observation is that the data is well populated with very few missing values, and '?' which probably represents an answer that was not able to be deciphered during data collection. We can treat these as missing values and impute them with the most frequent value in the respective columns.
+- One of the first things to notice is the heavy class imbalance in the target variable, with a ratio of 1:15 between -50K:50K+.
+
+- Another crucial observation is that the data is well populated with very few missing values, and '?' which probably represents an answer that was not able to be deciphered during data collection. We denote these as missing values. 
 
 - Not in universe is a term used in the dataset to indicate that a particular feature is not applicable to an individual.
 
@@ -29,7 +31,7 @@
 - Columns with a large number of Not in universe were also columns that did not have a lot of importance in the model. However, the large existence of Not in universe values is not the reason for the low importance of these features. 
 
 ## Data Cleaning and Preprocessing
-- The labels - 50000 and 50000 + were converted to 0 and 1 respectively for easier modeling.
+- The labels - 50000. and 50000+. were converted to 0 and 1 respectively for easier modeling.
 - The missing values represented by '?', 'Not identifiable' and np.nan were replaced with na. 
 - We removed the column with more than 50% missing values which was 'migration code-change in msa'.
 - The missing values in the remaining columns were a small percentage of the total values and were handled better by our model rather than being imputed, so we left them as is.
@@ -41,12 +43,12 @@
 - Weight is a feature that represents the number of people in the population that each row in the dataset represents. It is used to account for the sampling design of the dataset and to ensure that the model's predictions are representative of the overall population.
 - We also created a new feature called total income which is the annualised wage of the individual.
     - We annualised the wage by multiplying the wage per hour by 35 which is defined by the Census as the classification for a full-time worker. We then multiply that number by 52. On account of if the individual is a part-time worker, we divide the annualised wage by 2. We find that information in the 'full or part time employment stat' column.
-    - An avid reader would question why we have not included capital gains and dividends from stocks in the total income feature. They would also question why then is prediction of income is even a problem given these features. 
+    - An avid reader would question why we have not included capital gains and dividends from stocks in the total income feature. They would also question why is prediction of income is even a problem given that we can roughly calculate the individual's total income. 
         - The issue with the latter is that in the minority class (50K+), those who have responded to have worked 52 weeks in a year, have not necessarily responded to have a high wage per hour. In fact, most of those individuals actually have a wage per hour of 0. 
-        - The issue with the former is largely because capital gains itself is a very strong and rather sparse indicator. Including it in the total income feature did not provide much of a boost to the model performance and it also made the feature less interpretable.
+        - The issue with the former is largely because capital gains itself is a very strong and a rather sparse indicator. Including it in the total income feature did not provide much of a boost to the model performance and it also made the feature less interpretable.
 
 - Distribution of numerical features:
-![alt text](image-1.png)
+<img src="images/image-1.png" width="70%"/>
 
 ## Categorical Features
 - Categorical features are the rest of the 35 features in the dataset.
@@ -100,56 +102,78 @@
 
 - Bearing that in mind, we can now look at the feature importance scores:
 
-![Feature Importance: ](feature_importance_baseline.png)
+<img src="images/feature_importance_baseline.png" width="70%"/>
 
 - Looking at the feature importance scores, we can now account to why major occupation code scores so low while detailed occupation recode scores so high.
 
 - We take our point further and plot the feature importance scores after having dropped the columns detailed occupation recode and detailed industry recode to show the colinearity between the features and how the importance of major occupation code increases after dropping detailed occupation recode similarly for industry.
 
-- ![Feature Importance after dropping Detailed Occupation & Industry Recode: ](feature_importance_colinearity_check.png)
+<img src="images/feature_importance_colinearity_check.png" width="70%"/>
 
 > Note how Major Occupation and Major Industry code have a significant increase in importance after dropping the detailed occupation and industry recode features. This shows the colinearity between these features and how they are providing similar information to the model.
 
 - We then can remove such columns with high colinearity and low importance and retrain the model to reduce the complexity of the model and to make it more interpretable while preserving model performance. 
+
+- We follow this methodology of looking at feature importance, understanding the features and their relationships with each other and the target variable, and then selecting features based on that understanding to build a more interpretable model while preserving performance.
+
+- We select all the features except the lowest 10 features, i.e. until Major industry code since those are proven to be colinear and all the features after those thereby are either colinear themselves or have very low importance. 
+
 
                         ── Model Comparison ──
                   model  n_features  train_f1  test_f1    gap
       Baseline (all features)    40    0.8956   0.7621 0.1335
       Selected features          30    0.8811   0.7590 0.1221
 
-- We follow this methodology of looking at feature importance, understanding the features and their relationships with each other and the target variable, and then selecting features based on that understanding to build a more interpretable model while preserving performance.
-
-- We select all the features except the lowest 10 features, i.e. until Major industry code since those are proven to be colinear and all the features after those thereby are either colinear themselves or have very low importance. 
 
 ## Model Usage Recommendation 
 - Any data collected in the future should be preprocessed in the same way as the training data, including handling missing values, creating the total income feature, and ensuring consistency in the labels of the categorical features.
-- If the priority is targeting all the 50k+ individuals, then the model can be used with a lower threshold to increase recall at the cost of precision. We could provide that as an argument --prediction_threshold to the predict function in the pipeline.py script. Where the default value is 0.5, and higher values increase the threshold for classifying an individual as 50K+ and lower values decrease the threshold.
-- Further, the model's out-of-distribution performance should be monitored closely given the class imbalance especially if using the Baseline Model.
-- Lastly, a consideration for feature selection would be any data quality knowledge and costs, if there are features that are costly to collect or known to have data quality issues which are not visible to us, then it could be a good idea to drop those features and find a replacement. Such as using 'major occupation code' instead of 'detailed occupation recode'.
+- If the priority is targeting all the 50k+ individuals, then the model can be used with a lower threshold to increase recall at the cost of precision. We could provide that as an argument --prediction_threshold to the predict function in the pipeline.py script. Where the default value is 0.5, and higher values increase the threshold for classifying an individual as 50K+ and lower values decrease the threshold. So greater recall as you lower the threshold and greater precision as you increase the threshold for the 50K+ class.
+- Further, the model's out-of-distribution performance should be monitored closely given the class imbalance especially if using the Baseline Model.Since that model has a higher variance, new data that is not similar to the training data could lead to a significant drop in performance. 
+- Lastly, a consideration for feature selection would be any data quality knowledge and costs, if there are features that are costly to collect or known to have data quality issues particularly those that are not visible to us, then it could be a good idea to drop those features and find a replacement. Such as using 'major occupation code' instead of 'detailed occupation recode'.
 
 # Segmentation Model 
 
 ## Data Exploration and Analysis
 - Largely a segmentation problem starts with being able to represent the data properly. Second it is to use that representation to be able to segment the data in a way that is useful for the business problem at hand.
 - For the first part we select features that would be useful for the marketing team and that would have a meaningful representation. 
-    - For example, some columns could be 90% one label are unlikely to bring much value to the segmentation model. Second some columns which are of high cardinality and have a long tail distribution are also unlikely to bring much value to the segmentation model.
+    - For example, some columns could have a consistency where 90% of its values are just one label and its minority classes are a long tail, or not meaningful then those columns provide little value to the segmentation model.
+    - Second some columns which are of high cardinality and have a long tail distribution are also unlikely to bring much value to the segmentation model.
     - Therefore we select the following features for the segmentation model:
         - numerical_cols = ['age', 'capital gains', 'capital losses', 'dividends from stocks', 'weeks worked in year', 'wage per hour']
         - categorical_cols = ['major occupation code', 'major industry code', 'education', 'detailed household summary in household', 'detailed household and family stat', 'tax filer stat', 'full or part time employment stat', 'race', 'marital stat', 'veterans benefits', 'country of birth self', 'citizenship' ]
         - These features are selected based on their importance to the marketing team and for the categoircal columns it is also based on their distribution and cardinality.
+        - Some columns such as 'country of birth self' and 'citizenship' are still included despite their high cardinality and long tail distribution because they are direct indicators of the demographic of the individual which is crucial for the segmentation model.
 
-## Model Selection and (Training (not really training but more of a clustering technique selection))
-- For the second part, we use a dimensionality reduction technique such as PCA or t-SNE to reduce the dimensionality of the data and hypothesise which clustering technique would be best suited for the data. 
-- For this one can use PCA or t-SNE, both provided great visuals but t-SNE in particular provided a very clear visual of the clusters in the data.
-![Tsne:](tsne_raw.png)
-- We then look at the dimension at which we capture 90% of the variance in the data and use that as the number of dimensions to reduce the data to. This is because PCA tries to find eigenvectors that capture the most variance in the data and by looking at the explained variance ratio, we can find the number of dimensions that capture a significant amount of variance in the data. Eigenvectors are orthogonal vectors and the ones on the covaraince matrix capture the directions of maximum variance in the data. 
-![PCA Explained Variance: ](pca_explained_variance.png)
-- After reducing the dimensionality of the data, we apply Elbow Plot and Silhouette Plot to get the number of clusters we can use. Where Elbow plot uses within sum of squares to tell us how far each point is from its cluster centroid and the silhouette plot gives us how well separated the clusters are and the tightness.
-![Elbow and Silhouette Plot:](kmeans_elbow_silhouette_nb.png)
-- The plots pointed at using K-means with 6 clusters as a good clustering technique for our data.
+## Model Selection and Clustering
+- For the second part, we use a dimensionality reduction technique such as PCA or t-SNE to reduce the dimensionality of the data and use K-Means as the clustering technique best suited for the data and clean interpretation of the clusters. 
+- For this part, one can use PCA or t-SNE, in this scenario both provided great visuals but t-SNE in particular provided a very clear visual of the clusters in the data.
+<img src="images/tsne_raw.png" width="70%"/>
+> While points in 2D may seem overlapping, it's important to note that we will be clustering in a much higher-dimension space (28 dimensions based on the PCA explained variance) where the clusters are more separable. The t-SNE plot is just a 2D projection of the data and may not capture all the nuances of the clusters in the higher-dimensional space.
+
+- Now that we have had a good look of our data in the 2D space, we can brodcast back to higher dimensions and begin finding clusters.
+
+- We now look at the dimension at which we capture 90% of the variance in the data and use that as the number of dimensions to reduce the data to. This is because PCA tries to find eigenvectors that capture the most variance in the data and by looking at the explained variance ratio, we can find the number of dimensions that capture a significant amount of variance in the data. Eigenvectors are orthogonal vectors and the ones on the covaraince matrix capture the directions of maximum variance in the data. 
+> You are finding a set of basis that can represent the data in a lower dimensional space while preserving as much of the variance as possible.
+<img src="images/pca_explained_variance.png" width="70%"/>
+
+- We find that at 28 dimensions we capture about 90% of the variance in the data and we can use that as the number of dimensions to reduce the data to before applying K-means. 
+
+- K-means requires setting only one parameter: the number of clusters (K). However, it is also important to note that the initialization of the centroids can also impact the results. 
+
+- Having picked the top 28 principal components (dimensions), we now seek how many clusters would best fit our data. 
+-  We want our clusters to be well defined meaning that we want each cluster to have points close to each other and each cluster to be far from each other. 
+- For this, we can use the elbow method and silhouette score to find the optimal number of clusters.
+- Elbow plot uses within cluster sum of squares of the distances of a point to its cluster centeroid to tell us the tightness of the cluster and the silhouette plot tells us how well separated the clusters while also incorporating tightness.
+<img src="images/kmeans_elbow_silhouette_nb.png" width="70%"/>
+
+- We want to minimize the within cluster sum of squares (represented by the elbow plot) and maximize the silhouette score, leading us to choose K-means with 6 clusters.
 - Once we plot the clusters, we can then look at the distribution of the features in each cluster to be able to provide insights on the characteristics of each cluster and how they differ from each other.
 
-![Clustered Tsne: ](tsne_clusters.png)
+<img src="images/tsne_clusters.png" width="70%"/>
+
+<img src="images/cluster_profile_numerical.png" width="70%"/>
+
+<img src="images/cluster_profile_categorical.png" width="70%"/>
 
 - The clusters can be nicely defined as follows:
     - Cluster 1 and 0: Younger and Older individuals respectively with small capital gains and losses. Larger dividends from stocks for the older generation and non-existent for the younger generation, and basically little to no wage per hour. They are likely to be students and retirees. There are other obvious differences in the distribution of the categorical features such as education, marital status, etc. Which adds to the well defined nature of these clusters.
@@ -157,7 +181,7 @@
         - Cluster 2 and 5: These are working individuals whose primary source of income is wage per hour. They have small to medium capital gains and losses and dividends from stocks. Two bigger differences between the two is their age with the latter being older and also more likely to be a householder.
         - Cluster 3 and 4: Both of similar age but the former has a much higher capital gains and dividends from stocks while the latter has a much higher wage per hour a good amount of dividends from stocks but also much higher capital losses. They both have large appetites for risk. 
 
-- We can attach back our target variable to the clusters. It then becomes obvious that cluster 3 is the cluster with the highest percentage of 50K+ and individuals in the cluseter 0 and 1 are the least likely to be 50K+. What is less obvious is why our cluster 2 and 5 have quite a low percentage of 50K+ individuals despite being working individuals. This exercise also does show us why Capital Gains was such an important feature for predicting 50K+. 
+- We can attach back our target variable to the clusters. It then becomes obvious that cluster 3 is the cluster with the highest percentage of 50K+ and individuals in the cluster 0 and 1 are the least likely to be 50K+. What is less obvious is why our cluster 2 and 5 have quite a low percentage of 50K+ individuals despite being working individuals. This exercise also does show us why Capital Gains was such an important feature for predicting 50K+. 
 
 
 
