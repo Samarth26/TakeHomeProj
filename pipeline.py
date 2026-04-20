@@ -97,17 +97,6 @@ plt.suptitle("Distribution of Numerical Features", y=1.02)
 plt.tight_layout()
 plt.savefig("images/numerical_distributions.png", dpi=150)
 
-# ── 10. EDA – total income by label ───────────────────────────────────────────
-plot_df = pd.DataFrame({"total_income": wage_per_year, "label": y.map({0: "≤50K", 1: ">50K"})})
-
-plt.figure(figsize=(8, 6))
-sns.boxplot(data=plot_df, x="label", y="total_income", showfliers=False)
-plt.title("Total Income Distribution by Label (outliers hidden)")
-plt.xlabel("Label")
-plt.ylabel("Total Income ($)")
-plt.tight_layout()
-plt.savefig("images/total_income_by_label.png", dpi=150)
-
 # ── 10. Cross-validation helper ────────────────────────────────────────────────
 def cross_validate(X, y, weights, n_splits=5, label="model", **xgb_kwargs):
     X_cv = X.copy()

@@ -1,0 +1,1098 @@
+Loaded: (199523, 42)
+Dropped 3229 exact duplicates → (196294, 42)
+Label distribution:
+label
+0    183912
+1     12382
+Name: count, dtype: int64
+
+Dropping high-missing columns: ['migration code-change in msa']
+X shape after drop: (196294, 39)
+
+Running optuna hyperparameter search…
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8890 ± 0.0012
+  Test  Macro F1 : 0.7584 ± 0.0024
+  Test  Accuracy : 0.9275 ± 0.0005
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.46      0.70      0.56 12758.365642242212
+
+    accuracy                           0.93 196294.000000003
+   macro avg       0.72      0.82      0.76 196294.000000003
+weighted avg       0.94      0.93      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7821 ± 0.0014
+  Test  Macro F1 : 0.7299 ± 0.0028
+  Test  Accuracy : 0.9001 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.94 183535.63435776078
+           1       0.38      0.82      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8745 ± 0.0021
+  Test  Macro F1 : 0.7565 ± 0.0033
+  Test  Accuracy : 0.9252 ± 0.0014
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.45      0.71      0.55 12758.365642242212
+
+    accuracy                           0.93 196294.000000003
+   macro avg       0.72      0.83      0.76 196294.000000003
+weighted avg       0.95      0.93      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8515 ± 0.0007
+  Test  Macro F1 : 0.7516 ± 0.0033
+  Test  Accuracy : 0.9200 ± 0.0010
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.74      0.55 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.71      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7849 ± 0.0033
+  Test  Macro F1 : 0.7317 ± 0.0011
+  Test  Accuracy : 0.9015 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.38      0.82      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8354 ± 0.0009
+  Test  Macro F1 : 0.7473 ± 0.0038
+  Test  Accuracy : 0.9160 ± 0.0011
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.95 183535.63435776078
+           1       0.42      0.76      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8464 ± 0.0026
+  Test  Macro F1 : 0.7493 ± 0.0024
+  Test  Accuracy : 0.9186 ± 0.0010
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.74      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8222 ± 0.0019
+  Test  Macro F1 : 0.7426 ± 0.0033
+  Test  Accuracy : 0.9122 ± 0.0011
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.77      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8081 ± 0.0018
+  Test  Macro F1 : 0.7393 ± 0.0037
+  Test  Accuracy : 0.9085 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7782 ± 0.0016
+  Test  Macro F1 : 0.7266 ± 0.0047
+  Test  Accuracy : 0.8976 ± 0.0020
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.91 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8181 ± 0.0021
+  Test  Macro F1 : 0.7416 ± 0.0032
+  Test  Accuracy : 0.9111 ± 0.0014
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7821 ± 0.0013
+  Test  Macro F1 : 0.7285 ± 0.0021
+  Test  Accuracy : 0.8995 ± 0.0002
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.94 183535.63435776078
+           1       0.37      0.81      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8260 ± 0.0015
+  Test  Macro F1 : 0.7420 ± 0.0030
+  Test  Accuracy : 0.9125 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.77      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.84      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8131 ± 0.0007
+  Test  Macro F1 : 0.7411 ± 0.0034
+  Test  Accuracy : 0.9099 ± 0.0011
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8295 ± 0.0018
+  Test  Macro F1 : 0.7447 ± 0.0037
+  Test  Accuracy : 0.9141 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.77      0.54 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7973 ± 0.0007
+  Test  Macro F1 : 0.7347 ± 0.0032
+  Test  Accuracy : 0.9047 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.80      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.69      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7940 ± 0.0005
+  Test  Macro F1 : 0.7341 ± 0.0029
+  Test  Accuracy : 0.9040 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.81      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.69      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8114 ± 0.0016
+  Test  Macro F1 : 0.7403 ± 0.0026
+  Test  Accuracy : 0.9096 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7789 ± 0.0011
+  Test  Macro F1 : 0.7288 ± 0.0021
+  Test  Accuracy : 0.8989 ± 0.0001
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8816 ± 0.0013
+  Test  Macro F1 : 0.7571 ± 0.0019
+  Test  Accuracy : 0.9262 ± 0.0006
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.46      0.71      0.55 12758.365642242212
+
+    accuracy                           0.93 196294.000000003
+   macro avg       0.72      0.82      0.76 196294.000000003
+weighted avg       0.94      0.93      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8325 ± 0.0014
+  Test  Macro F1 : 0.7460 ± 0.0032
+  Test  Accuracy : 0.9151 ± 0.0014
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.95 183535.63435776078
+           1       0.42      0.76      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8081 ± 0.0018
+  Test  Macro F1 : 0.7393 ± 0.0037
+  Test  Accuracy : 0.9085 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8027 ± 0.0005
+  Test  Macro F1 : 0.7381 ± 0.0019
+  Test  Accuracy : 0.9070 ± 0.0003
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.80      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.86      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8188 ± 0.0016
+  Test  Macro F1 : 0.7415 ± 0.0027
+  Test  Accuracy : 0.9110 ± 0.0013
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8027 ± 0.0005
+  Test  Macro F1 : 0.7381 ± 0.0019
+  Test  Accuracy : 0.9070 ± 0.0003
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.80      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.86      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7791 ± 0.0012
+  Test  Macro F1 : 0.7286 ± 0.0014
+  Test  Accuracy : 0.8988 ± 0.0005
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8046 ± 0.0018
+  Test  Macro F1 : 0.7373 ± 0.0025
+  Test  Accuracy : 0.9071 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.98      0.91      0.95 183535.63435776078
+           1       0.39      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7764 ± 0.0028
+  Test  Macro F1 : 0.7264 ± 0.0021
+  Test  Accuracy : 0.8975 ± 0.0013
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.91 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8452 ± 0.0019
+  Test  Macro F1 : 0.7492 ± 0.0009
+  Test  Accuracy : 0.9179 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.95 183535.63435776078
+           1       0.43      0.75      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8434 ± 0.0014
+  Test  Macro F1 : 0.7494 ± 0.0031
+  Test  Accuracy : 0.9181 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.75      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+Best trial — score: 0.7058  test_f1: 0.7381  gap: 0.0646
+  max_depth: 7
+  max_leaves: 33
+  n_estimators: 150
+
+All trials:
+ number  score  test_f1  train_f1    gap  params_max_depth  params_max_leaves  params_n_estimators
+     22 0.7058   0.7381    0.8027 0.0646                 7                 33                  150
+     24 0.7058   0.7381    0.8027 0.0646                 7                 33                  150
+      4 0.7051   0.7317    0.7849 0.0532                10                 24                  150
+     13 0.7051   0.7411    0.8131 0.0720                 9                 29                  200
+      8 0.7049   0.7393    0.8081 0.0688                 8                 36                  150
+     21 0.7049   0.7393    0.8081 0.0688                 8                 36                  150
+     17 0.7048   0.7403    0.8114 0.0711                10                 23                  250
+     16 0.7041   0.7341    0.7940 0.0599                 9                 28                  150
+      1 0.7038   0.7299    0.7821 0.0522                 8                 23                  150
+     18 0.7038   0.7288    0.7789 0.0500                 9                 33                  100
+     26 0.7037   0.7373    0.8046 0.0673                 7                 34                  150
+     25 0.7034   0.7286    0.7791 0.0504                 7                 33                  100
+     15 0.7034   0.7347    0.7973 0.0626                10                 22                  200
+     10 0.7034   0.7416    0.8181 0.0765                10                 31                  200
+      5 0.7032   0.7473    0.8354 0.0881                 6                 26                  300
+     23 0.7029   0.7415    0.8188 0.0773                 7                 30                  200
+      7 0.7028   0.7426    0.8222 0.0796                 6                 26                  250
+     20 0.7028   0.7460    0.8325 0.0865                10                 25                  300
+     29 0.7024   0.7494    0.8434 0.0940                 7                 20                  450
+     14 0.7023   0.7447    0.8295 0.0848                 9                 29                  250
+     11 0.7017   0.7285    0.7821 0.0536                10                 35                  100
+      3 0.7017   0.7516    0.8515 0.0999                 9                 20                  500
+     27 0.7014   0.7264    0.7764 0.0501                 7                 31                  100
+     28 0.7013   0.7492    0.8452 0.0959                 6                 37                  250
+      9 0.7008   0.7266    0.7782 0.0516                 8                 32                  100
+      6 0.7007   0.7493    0.8464 0.0971                 8                 26                  350
+     12 0.7000   0.7420    0.8260 0.0840                 9                 35                  200
+      2 0.6975   0.7565    0.8745 0.1180                 6                 38                  350
+     19 0.6948   0.7571    0.8816 0.1246                 7                 28                  500
+      0 0.6931   0.7584    0.8890 0.1306                 7                 39                  400
+
+Training baseline on (196294, 40)
+
+── Baseline (all features) (5-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7926 ± 0.0024
+  Test  Macro F1 : 0.7349 ± 0.0051
+  Test  Accuracy : 0.9042 ± 0.0015
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.81      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.69      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+Top features by gain:
+                                                  gain
+detailed occupation recode                  446.470490
+sex                                         375.899567
+dividends from stocks                       256.406952
+detailed household and family stat          219.189987
+capital gains                               208.648026
+education                                   183.401428
+tax filer stat                              175.730194
+age                                         131.324158
+weeks worked in year                        130.959198
+capital losses                               76.580032
+total_income                                 75.224976
+detailed industry recode                     68.330467
+marital stat                                 65.946640
+num persons worked for employer              47.734554
+state of previous residence                  45.854599
+own business or self employed                41.025349
+class of worker                              40.909374
+fill inc questionnaire for veteran's admin   40.175476
+country of birth father                      34.568718
+country of birth mother                      33.830971
+country of birth self                        33.274654
+race                                         29.044704
+wage per hour                                28.251621
+hispanic origin                              21.452814
+full or part time employment stat            19.696930
+reason for unemployment                      18.862225
+member of a labor union                      17.902142
+citizenship                                  16.536467
+migration code-move within reg               13.190529
+region of previous residence                 13.021795
+migration prev res in sunbelt                12.633405
+major industry code                          12.553453
+enroll in edu inst last wk                   11.252506
+detailed household summary in household       9.997979
+migration code-change in reg                  9.574809
+major occupation code                         7.022496
+live in this house 1 year ago                 3.240976
+family members under 18                       0.000000
+veterans benefits                             0.000000
+year                                          0.000000
+
+── Colinearity check (5-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7717 ± 0.0022
+  Test  Macro F1 : 0.7255 ± 0.0039
+  Test  Accuracy : 0.8958 ± 0.0017
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.83      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.87      0.73 196294.000000003
+weighted avg       0.95      0.90      0.91 196294.000000003
+
+
+Colinearity check model — top features by gain:
+                                                  gain
+major occupation code                       673.830505
+sex                                         433.414368
+dividends from stocks                       238.496902
+capital gains                               190.295151
+tax filer stat                              182.426178
+detailed household and family stat          181.634521
+weeks worked in year                        174.706604
+education                                   162.596786
+age                                         159.826797
+capital losses                               70.697433
+total_income                                 67.323433
+major industry code                          58.967323
+num persons worked for employer              58.387314
+state of previous residence                  46.949524
+class of worker                              46.770672
+fill inc questionnaire for veteran's admin   41.923199
+own business or self employed                40.299622
+country of birth mother                      35.623928
+country of birth father                      33.747311
+migration prev res in sunbelt                32.198715
+marital stat                                 31.151079
+race                                         29.859978
+country of birth self                        29.643938
+wage per hour                                26.263298
+full or part time employment stat            24.143892
+enroll in edu inst last wk                   22.274170
+member of a labor union                      21.987007
+migration code-move within reg               20.996775
+reason for unemployment                      20.975183
+detailed household summary in household      17.308443
+hispanic origin                              16.799751
+migration code-change in reg                 15.608965
+citizenship                                  13.799314
+region of previous residence                  7.207866
+family members under 18                       0.000000
+veterans benefits                             0.000000
+year                                          0.000000
+live in this house 1 year ago                 0.000000
+
+Selected features (31): ['detailed occupation recode', 'sex', 'dividends from stocks', 'detailed household and family stat', 'capital gains', 'education', 'tax filer stat', 'age', 'weeks worked in year', 'capital losses', 'total_income', 'detailed industry recode', 'marital stat', 'num persons worked for employer', 'state of previous residence', 'own business or self employed', 'class of worker', "fill inc questionnaire for veteran's admin", 'country of birth father', 'country of birth mother', 'country of birth self', 'race', 'wage per hour', 'hispanic origin', 'full or part time employment stat', 'reason for unemployment', 'member of a labor union', 'citizenship', 'migration code-move within reg', 'region of previous residence', 'migration prev res in sunbelt']
+Running optuna hyperparameter search for selected-feature model…
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8907 ± 0.0007
+  Test  Macro F1 : 0.7587 ± 0.0029
+  Test  Accuracy : 0.9277 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.46      0.70      0.56 12758.365642242212
+
+    accuracy                           0.93 196294.000000003
+   macro avg       0.72      0.82      0.76 196294.000000003
+weighted avg       0.94      0.93      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7832 ± 0.0014
+  Test  Macro F1 : 0.7293 ± 0.0035
+  Test  Accuracy : 0.8999 ± 0.0015
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.94 183535.63435776078
+           1       0.38      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8739 ± 0.0028
+  Test  Macro F1 : 0.7570 ± 0.0034
+  Test  Accuracy : 0.9250 ± 0.0004
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.45      0.72      0.56 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.72      0.83      0.76 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8509 ± 0.0029
+  Test  Macro F1 : 0.7501 ± 0.0010
+  Test  Accuracy : 0.9193 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.74      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.71      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7849 ± 0.0016
+  Test  Macro F1 : 0.7313 ± 0.0038
+  Test  Accuracy : 0.9013 ± 0.0011
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.94 183535.63435776078
+           1       0.38      0.81      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8348 ± 0.0015
+  Test  Macro F1 : 0.7450 ± 0.0028
+  Test  Accuracy : 0.9148 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.95 183535.63435776078
+           1       0.42      0.76      0.54 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.84      0.74 196294.000000003
+weighted avg       0.95      0.91      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8458 ± 0.0007
+  Test  Macro F1 : 0.7492 ± 0.0030
+  Test  Accuracy : 0.9182 ± 0.0008
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.75      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8219 ± 0.0010
+  Test  Macro F1 : 0.7416 ± 0.0038
+  Test  Accuracy : 0.9114 ± 0.0010
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8072 ± 0.0010
+  Test  Macro F1 : 0.7376 ± 0.0041
+  Test  Accuracy : 0.9075 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.39      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7768 ± 0.0026
+  Test  Macro F1 : 0.7267 ± 0.0032
+  Test  Accuracy : 0.8977 ± 0.0012
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.91 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8185 ± 0.0019
+  Test  Macro F1 : 0.7419 ± 0.0023
+  Test  Accuracy : 0.9112 ± 0.0012
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8185 ± 0.0019
+  Test  Macro F1 : 0.7419 ± 0.0023
+  Test  Accuracy : 0.9112 ± 0.0012
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7800 ± 0.0017
+  Test  Macro F1 : 0.7287 ± 0.0023
+  Test  Accuracy : 0.8992 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8099 ± 0.0022
+  Test  Macro F1 : 0.7390 ± 0.0043
+  Test  Accuracy : 0.9085 ± 0.0019
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8310 ± 0.0015
+  Test  Macro F1 : 0.7460 ± 0.0030
+  Test  Accuracy : 0.9147 ± 0.0005
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.42      0.77      0.54 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.85      0.75 196294.000000003
+weighted avg       0.95      0.91      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7970 ± 0.0014
+  Test  Macro F1 : 0.7349 ± 0.0044
+  Test  Accuracy : 0.9048 ± 0.0021
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.80      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.69      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7774 ± 0.0020
+  Test  Macro F1 : 0.7287 ± 0.0038
+  Test  Accuracy : 0.8987 ± 0.0010
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7570 ± 0.0019
+  Test  Macro F1 : 0.7203 ± 0.0037
+  Test  Accuracy : 0.8911 ± 0.0015
+              precision    recall  f1-score   support
+
+           0       0.99      0.89      0.94 183535.63435776078
+           1       0.36      0.84      0.50 12758.365642242212
+
+    accuracy                           0.89 196294.000000003
+   macro avg       0.67      0.87      0.72 196294.000000003
+weighted avg       0.95      0.89      0.91 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7832 ± 0.0014
+  Test  Macro F1 : 0.7293 ± 0.0035
+  Test  Accuracy : 0.8999 ± 0.0015
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.94 183535.63435776078
+           1       0.38      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8675 ± 0.0006
+  Test  Macro F1 : 0.7537 ± 0.0028
+  Test  Accuracy : 0.9232 ± 0.0003
+              precision    recall  f1-score   support
+
+           0       0.98      0.94      0.96 183535.63435776078
+           1       0.44      0.72      0.55 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.71      0.83      0.75 196294.000000003
+weighted avg       0.94      0.92      0.93 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8068 ± 0.0011
+  Test  Macro F1 : 0.7390 ± 0.0027
+  Test  Accuracy : 0.9083 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8198 ± 0.0006
+  Test  Macro F1 : 0.7423 ± 0.0021
+  Test  Accuracy : 0.9117 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8148 ± 0.0020
+  Test  Macro F1 : 0.7399 ± 0.0039
+  Test  Accuracy : 0.9100 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7774 ± 0.0020
+  Test  Macro F1 : 0.7287 ± 0.0038
+  Test  Accuracy : 0.8987 ± 0.0010
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.37      0.82      0.51 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8224 ± 0.0013
+  Test  Macro F1 : 0.7437 ± 0.0034
+  Test  Accuracy : 0.9126 ± 0.0016
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.41      0.78      0.54 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.70      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7934 ± 0.0027
+  Test  Macro F1 : 0.7335 ± 0.0012
+  Test  Accuracy : 0.9034 ± 0.0013
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.38      0.81      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.68      0.86      0.73 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8148 ± 0.0020
+  Test  Macro F1 : 0.7399 ± 0.0039
+  Test  Accuracy : 0.9100 ± 0.0007
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.40      0.78      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7611 ± 0.0009
+  Test  Macro F1 : 0.7222 ± 0.0035
+  Test  Accuracy : 0.8927 ± 0.0013
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94 183535.63435776078
+           1       0.36      0.84      0.50 12758.365642242212
+
+    accuracy                           0.89 196294.000000003
+   macro avg       0.67      0.87      0.72 196294.000000003
+weighted avg       0.95      0.89      0.91 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8054 ± 0.0008
+  Test  Macro F1 : 0.7371 ± 0.0031
+  Test  Accuracy : 0.9072 ± 0.0013
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95 183535.63435776078
+           1       0.39      0.79      0.53 12758.365642242212
+
+    accuracy                           0.91 196294.000000003
+   macro avg       0.69      0.85      0.74 196294.000000003
+weighted avg       0.95      0.91      0.92 196294.000000003
+
+
+── optuna (3-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.8476 ± 0.0004
+  Test  Macro F1 : 0.7495 ± 0.0024
+  Test  Accuracy : 0.9187 ± 0.0009
+              precision    recall  f1-score   support
+
+           0       0.98      0.93      0.96 183535.63435776078
+           1       0.43      0.74      0.54 12758.365642242212
+
+    accuracy                           0.92 196294.000000003
+   macro avg       0.70      0.84      0.75 196294.000000003
+weighted avg       0.95      0.92      0.93 196294.000000003
+
+
+Best trial — score: 0.7051  test_f1: 0.7390  gap: 0.0678
+  max_depth: 10
+  max_leaves: 21
+  n_estimators: 250
+
+All trials:
+ number  score  test_f1  train_f1    gap  params_max_depth  params_max_leaves  params_n_estimators
+     20 0.7051   0.7390    0.8068 0.0678                10                 21                  250
+      4 0.7044   0.7313    0.7849 0.0536                10                 24                  150
+     16 0.7043   0.7287    0.7774 0.0487                 9                 20                  150
+     23 0.7043   0.7287    0.7774 0.0487                 9                 20                  150
+     24 0.7043   0.7437    0.8224 0.0788                10                 22                  300
+     15 0.7038   0.7349    0.7970 0.0622                 9                 22                  200
+     10 0.7036   0.7419    0.8185 0.0766                10                 31                  200
+     11 0.7036   0.7419    0.8185 0.0766                10                 31                  200
+     25 0.7035   0.7335    0.7934 0.0599                 9                 28                  150
+     21 0.7035   0.7423    0.8198 0.0775                10                 21                  300
+     14 0.7035   0.7460    0.8310 0.0850                 9                 29                  250
+     13 0.7035   0.7390    0.8099 0.0709                10                 27                  200
+     12 0.7030   0.7287    0.7800 0.0513                10                 33                  100
+     28 0.7029   0.7371    0.8054 0.0683                10                 25                  200
+      8 0.7028   0.7376    0.8072 0.0696                 8                 36                  150
+     27 0.7027   0.7222    0.7611 0.0389                 9                 22                  100
+      1 0.7024   0.7293    0.7832 0.0538                 8                 23                  150
+     18 0.7024   0.7293    0.7832 0.0538                 9                 23                  150
+     22 0.7024   0.7399    0.8148 0.0749                10                 24                  250
+     26 0.7024   0.7399    0.8148 0.0749                10                 24                  250
+     17 0.7019   0.7203    0.7570 0.0367                 9                 20                  100
+      9 0.7017   0.7267    0.7768 0.0501                 8                 32                  100
+      7 0.7015   0.7416    0.8219 0.0803                 6                 26                  250
+      6 0.7008   0.7492    0.8458 0.0966                 8                 26                  350
+     29 0.7005   0.7495    0.8476 0.0981                 7                 21                  450
+      5 0.7001   0.7450    0.8348 0.0898                 6                 26                  300
+      3 0.6997   0.7501    0.8509 0.1008                 9                 20                  500
+      2 0.6985   0.7570    0.8739 0.1169                 6                 38                  350
+     19 0.6967   0.7537    0.8675 0.1138                 7                 24                  500
+      0 0.6927   0.7587    0.8907 0.1320                 7                 39                  400
+
+── Selected features (5-fold CV, scale_pos_weight=14.9) ──
+  Train Macro F1 : 0.7959 ± 0.0017
+  Test  Macro F1 : 0.7352 ± 0.0040
+  Test  Accuracy : 0.9048 ± 0.0017
+              precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95 183535.63435776078
+           1       0.39      0.80      0.52 12758.365642242212
+
+    accuracy                           0.90 196294.000000003
+   macro avg       0.69      0.86      0.74 196294.000000003
+weighted avg       0.95      0.90      0.92 196294.000000003
+
+
+Selected model — top features by gain:
+                                                  gain
+sex                                         424.585846
+detailed occupation recode                  389.118683
+dividends from stocks                       267.365204
+education                                   200.850250
+capital gains                               186.702560
+tax filer stat                              174.640457
+detailed household and family stat          155.397995
+age                                         147.266647
+weeks worked in year                        139.053482
+capital losses                               63.642151
+detailed industry recode                     61.317959
+total_income                                 61.163223
+num persons worked for employer              45.049091
+own business or self employed                44.754276
+fill inc questionnaire for veteran's admin   40.054096
+class of worker                              38.493679
+marital stat                                 36.796909
+state of previous residence                  36.465359
+reason for unemployment                      33.618088
+country of birth father                      33.159370
+country of birth mother                      33.075943
+country of birth self                        29.389551
+wage per hour                                25.508085
+full or part time employment stat            25.328707
+race                                         23.334602
+member of a labor union                      17.539141
+hispanic origin                              15.618042
+migration code-move within reg               12.525307
+citizenship                                   7.996175
+region of previous residence                  3.358568
+migration prev res in sunbelt                 0.558706
+
+── Model Comparison ──
+                  model  n_features  train_f1  test_f1    gap
+      Selected features          31    0.7959   0.7352 0.0607
+Baseline (all features)          40    0.7926   0.7349 0.0577

@@ -1,0 +1,90 @@
+Loaded: (199523, 42)
+Encoded shape: (199523, 173)
+80% variance: 12 components
+90% variance: 27 components
+95% variance: 45 components
+Running t-SNE…
+--------------------------------------------------------------------------------
+TSNE(early_exaggeration=12, n_jobs=-1, negative_gradient_method='fft',
+     random_state=42, verbose=True)
+--------------------------------------------------------------------------------
+===> Finding 90 nearest neighbors using Annoy approximate search using euclidean distance...
+   --> Time elapsed: 13.23 seconds
+===> Calculating affinity matrix...
+   --> Time elapsed: 2.96 seconds
+===> Calculating PCA-based initialization...
+   --> Time elapsed: 0.09 seconds
+===> Running optimization with exaggeration=12.00, lr=16626.92 for 250 iterations...
+Iteration   50, KL divergence 6.5767, 50 iterations in 2.2942 sec
+Iteration  100, KL divergence 5.9862, 50 iterations in 2.3274 sec
+Iteration  150, KL divergence 5.7139, 50 iterations in 2.3652 sec
+Iteration  200, KL divergence 5.5738, 50 iterations in 2.5217 sec
+Iteration  250, KL divergence 5.4688, 50 iterations in 2.3355 sec
+   --> Time elapsed: 11.84 seconds
+===> Running optimization with exaggeration=1.00, lr=199523.00 for 500 iterations...
+Iteration   50, KL divergence 3.8097, 50 iterations in 2.4807 sec
+Iteration  100, KL divergence 3.4292, 50 iterations in 3.1323 sec
+Iteration  150, KL divergence 3.2497, 50 iterations in 4.0961 sec
+Iteration  200, KL divergence 3.1290, 50 iterations in 4.6517 sec
+Iteration  250, KL divergence 3.0679, 50 iterations in 5.0630 sec
+Iteration  300, KL divergence 3.0128, 50 iterations in 5.3957 sec
+Iteration  350, KL divergence 2.9673, 50 iterations in 5.7134 sec
+Iteration  400, KL divergence 2.9498, 50 iterations in 5.7928 sec
+Iteration  450, KL divergence 2.9147, 50 iterations in 6.6112 sec
+Iteration  500, KL divergence 2.8746, 50 iterations in 6.7182 sec
+   --> Time elapsed: 49.66 seconds
+Running elbow/silhouette search…
+
+Silhouette scores:
+  K=2: 0.2739
+  K=3: 0.3063
+  K=4: 0.3269
+  K=5: 0.3344
+  K=6: 0.3546
+  K=7: 0.3535
+  K=8: 0.3298
+  K=9: 0.3366
+  K=10: 0.3360
+  K=11: 0.3097
+
+Fitting KMeans with K=6…
+
+── Cluster sizes ──
+cluster
+0     8294
+1    60377
+2    42568
+3    84109
+4     3783
+5      392
+Name: count, dtype: int64
+
+── Numerical means per cluster ──
+          age  capital gains  capital losses  dividends from stocks  weeks worked in year  wage per hour
+cluster                                                                                                 
+0        38.6          290.0             4.7                  116.4                  47.7         1144.9
+1         9.4            3.3             0.0                    2.1                   0.7            2.3
+2        60.1          160.5             0.5                  468.0                   1.5            0.8
+3        38.7          454.7             0.4                  160.9                  46.9           13.5
+4        44.0            0.0          1944.1                  730.7                  41.6           64.4
+5        46.8        99630.8             0.0                 5346.4                  47.4           24.7
+
+── Categorical mode per cluster ──
+                  major occupation code          major industry code                   education detailed household summary in household     detailed household and family stat       tax filer stat full or part time employment stat   race                     marital stat veterans benefits country of birth self                        citizenship
+cluster                                                                                                                                                                                                                                                                                                                                                  
+0        Adm support including clerical  Manufacturing-durable goods        High school graduate                             Householder                            Householder  Joint both under 65          Children or Armed Forces  White  Married-civilian spouse present                 2         United-States  Native- Born in the United States
+1                       Not in universe  Not in universe or children                    Children            Child under 18 never married  Child <18 never marr not in subfamily             Nonfiler          Children or Armed Forces  White                    Never married                 0         United-States  Native- Born in the United States
+2                       Not in universe  Not in universe or children        High school graduate                             Householder                  Spouse of householder             Nonfiler          Children or Armed Forces  White  Married-civilian spouse present                 2         United-States  Native- Born in the United States
+3        Adm support including clerical                 Retail trade        High school graduate                             Householder                            Householder  Joint both under 65          Children or Armed Forces  White  Married-civilian spouse present                 2         United-States  Native- Born in the United States
+4                       Not in universe  Not in universe or children        High school graduate                             Householder                            Householder  Joint both under 65          Children or Armed Forces  White  Married-civilian spouse present                 2         United-States  Native- Born in the United States
+5                Professional specialty      Medical except hospital  Bachelors degree(BA AB BS)                             Householder                            Householder  Joint both under 65          Children or Armed Forces  White  Married-civilian spouse present                 2         United-States  Native- Born in the United States
+
+── % earning >50K per cluster ──
+cluster
+0     5.8
+1     0.0
+2     1.8
+3    11.5
+4    30.4
+5    88.3
+Name: high_income, dtype: float64

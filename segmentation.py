@@ -119,7 +119,7 @@ for k, s in zip(K_range, silhouettes):
     print(f"  K={k}: {s:.4f}")
 
 # ── 10. Final KMeans clustering ────────────────────────────────────────────────
-K = 4  # update based on elbow/silhouette plots
+K = 6  # update based on elbow/silhouette plots
 print(f"\nFitting KMeans with K={K}…")
 kmeans = KMeans(n_clusters=K, random_state=42, n_init=10)
 clusters = kmeans.fit_predict(df_pca_28)
